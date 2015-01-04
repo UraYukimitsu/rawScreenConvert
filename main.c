@@ -27,17 +27,17 @@ int main (int argc, char** argv)
                 writeLittleEndianInt(1764, conv);     //BMP file generator signature, useless
                 writeLittleEndianInt(0x36, conv);     //Pixel array start offset
                 //DIB header start @ 0x0E
-                writeLittleEndianInt(40, conv);    //DIB header size (40 bytes)
-                writeLittleEndianInt(w, conv);     //Image width
-                writeLittleEndianInt(~(h-1), conv);    //Image height (negative to store from up to down)
-                fputc(1, conv);fputc(0, conv);     //Color panes (must be 1)
-                fputc(24, conv);fputc(0, conv);    //Bits per pixel
-                write00(conv);                     //Compression (0 = none)
-                writeLittleEndianInt(3*h*w, conv); //Size of the pixel array in bytes (?)
-                write00(conv);                     //Horizontal resolution (set to 0, useless?)
-                write00(conv);                     //Vertical resolution (set to 0, useless?)
-                write00(conv);                     //Colors in palette (set to 0, no palette)
-                write00(conv);                     //Number of important colors (set to 0, no palette)
+                writeLittleEndianInt(40, conv);       //DIB header size (40 bytes)
+                writeLittleEndianInt(w, conv);        //Image width
+                writeLittleEndianInt(~(h-1), conv);   //Image height (negative to store from up to down)
+                fputc(1, conv);fputc(0, conv);        //Color panes (must be 1)
+                fputc(24, conv);fputc(0, conv);       //Bits per pixel
+                write00(conv);                        //Compression (0 = none)
+                writeLittleEndianInt(3*h*w, conv);    //Size of the pixel array in bytes (?)
+                write00(conv);                        //Horizontal resolution (set to 0, useless?)
+                write00(conv);                        //Vertical resolution (set to 0, useless?)
+                write00(conv);                        //Colors in palette (set to 0, no palette)
+                write00(conv);                        //Number of important colors (set to 0, no palette)
                 for(i = 0; i < w * h; i++)
                 {
                     r = fgetc(file);
