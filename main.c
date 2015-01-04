@@ -8,12 +8,12 @@ void writeLittleEndianInt(int i, FILE* file);
 int main (int argc, char** argv)
 {
     FILE *file, *conv;
-    int i, j, h, w, size, r, g, b;
+    int i, h, w, size, r, g, b;
 
-    if(argc == 2)
+    if(argc == 3)
     {
         file = fopen(argv[1], "rb");
-        conv = fopen("conv.bmp", "wb+");
+        conv = fopen(argv[2], "wb+");
         if(file != NULL)
         {
             w = fgetc(file) + (fgetc(file) << 8) + (fgetc(file) << 16) + (fgetc(file) << 24);
